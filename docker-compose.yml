@@ -1,0 +1,49 @@
+version: "3.9"
+
+networks:
+  net:
+    name: telehak_net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.89.0/24
+          gateway: 192.168.89.1
+
+services:  
+  backend:
+    container_name: backend
+    build: ./backend
+    command: sh -c "
+      python manage.py makemigrations 
+      && python3 manage.py migrate
+      && python3 manage.py loaddata db.json
+      && gunicorn backend.wsgi -b 0.0.0.0:8000"
+    volumes:
+      - ./backend:/backend
+      - django-static:/backend/static
+    ports:
+      - 8000:8000
+    networks:
+      net:
+        ipv4_address: 192.168.89.102
+  
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+    command: sh -c "
+      npm run build
+      && http-server dist -p 80"
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - 80:80
+    networks:
+      net:
+        ipv4_address: 192.168.89.103
+    depends_on:
+      - backend
+
+volumes:
+  django-static:
