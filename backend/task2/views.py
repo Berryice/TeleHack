@@ -12,7 +12,7 @@ def user(request):
     }'''
     name = json.loads(request.body)["name"]
     try:
-        usr = vk.users.get(user_id=name)
+        usr = vk.users.get(user_id=name)[0]
         return JsonResponse(usr)
     except Exception:
         return JsonResponse({"message":"something went wrong"})
@@ -23,7 +23,7 @@ def group(request):
     }'''
     name = json.loads(request.body)["name"]
     try:
-        group = vk.groups.getById(group_id=name)
+        group = vk.groups.getById(group_id=name)[0]
         return JsonResponse(group)
     except Exception:
         return JsonResponse({"message":"something went wrong"})
