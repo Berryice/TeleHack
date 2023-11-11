@@ -5,6 +5,7 @@ charset-normalizer==3.3.2
 dadata==21.10.1
 Django==4.2.7
 django-cors-headers==4.3.0
+django-crispy-forms==2.1
 django-rest-framework==0.1.0
 djangorestframework==3.14.0
 gunicorn==21.2.0

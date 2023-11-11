@@ -2,12 +2,8 @@ import telethon
 from telethon import TelegramClient
 from telethon.errors import SessionPasswordNeededError
 
-api_id = "22998293"
-api_hash = "bce9f7a7a22733fd12ebef3840b60e48"
 
-
-
-async def tg(gname, search, username):
+async def tg(gname, search, username, api_id, api_hash):
     print(type(search))
     client = TelegramClient('anon', api_id=api_id, api_hash=api_hash)
     posts = []
