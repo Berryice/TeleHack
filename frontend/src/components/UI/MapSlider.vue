@@ -14,7 +14,7 @@ export default {
 .slider {
     position: absolute;
     left: 120%;
-    top: 1500%;
+    top: 600px;
     width: 50%;
     opacity: 0.7;
     transition: opacity .2s;
