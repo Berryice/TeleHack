@@ -5,23 +5,14 @@
 
 <script>
 import L from 'leaflet'
-import iconImage from "@/../fonts/static/pointer.png";
 
 var LeafIcon = L.Icon.extend({
 	options: {
-		// shadowUrl: 'leaf-shadow.png',
-		iconSize:     [38, 95],
-		shadowSize:   [50, 64],
-		iconAnchor:   [22, 94],
-		shadowAnchor: [4, 62],
-		popupAnchor:  [-3, -76]
+		iconSize:   [45, 45],
+		iconAnchor: [23, 45],
 	}
 });
-var pointIcon = new LeafIcon({
-    iconUrl: "https://www.svgrepo.com/show/344879/geo-alt.svg"
-    // iconUrl: "@/../fonts/static/pointer.png"
-    // icon: iconImage
-})
+var pointIcon = new LeafIcon({iconUrl: "https://www.svgrepo.com/show/344879/geo-alt.svg"})
 export default {
     name: 'MapComponent',
     data(){
