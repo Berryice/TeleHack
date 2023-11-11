@@ -18,7 +18,7 @@ var LeafIcon = L.Icon.extend({
 	}
 });
 var pointIcon = new LeafIcon({
-    iconUrl: "https://cdn.icon-icons.com/icons2/4034/PNG/512/pin_and_maps_point_location_pointer_map_interface_signs_placeholder_icon_256428.png"
+    iconUrl: "https://www.svgrepo.com/show/344879/geo-alt.svg"
     // iconUrl: "@/../fonts/static/pointer.png"
     // icon: iconImage
 })
