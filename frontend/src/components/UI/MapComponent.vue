@@ -18,8 +18,8 @@ var LeafIcon = L.Icon.extend({
 	}
 });
 var pointIcon = new LeafIcon({
-    // iconUrl: "https://i.pinimg.com/originals/f2/8d/38/f28d38ee3e542a4d8b340068b7994858.jpg"
-    iconUrl: "@/../fonts/static/pointer.png"
+    iconUrl: "https://cdn.icon-icons.com/icons2/4034/PNG/512/pin_and_maps_point_location_pointer_map_interface_signs_placeholder_icon_256428.png"
+    // iconUrl: "@/../fonts/static/pointer.png"
     // icon: iconImage
 })
 export default {
