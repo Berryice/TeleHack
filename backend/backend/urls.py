@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from telegram import urls
+from telegram import urls as urlsTG
+from geo import urls as urlsGeo
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('telegram/', include(urls.urlpatterns))
+    path('telegram/', include(urlsTG.urlpatterns)),
+    path("geo/", include(urlsGeo.urlpatterns))
 ]
