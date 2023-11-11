@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'geo',
     'rest_framework',
     'corsheaders',
+    'task2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
