@@ -11,6 +11,8 @@ async def getPostsTG(request):
         elif type(posts) == dict:
             return JsonResponse(posts)
         else:
+            print(posts)
             return JsonResponse({"err": "unknown error"})
-    except:
+    except Exception as e:
+        print(e)
         return JsonResponse({"err": "unknown error"})
