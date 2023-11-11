@@ -34,11 +34,13 @@ import L from 'leaflet'
         },
         watch: {
             x(newx) {
+                this.theMap.removeLayer(this.circle)
                 this.theMap.removeLayer(this.mark)
                 this.theMap.setView([newx, this.y], 13)
                 this.mark = L.marker([newx, this.y]).addTo(this.theMap);
             },
             y(newy) {
+                this.theMap.removeLayer(this.circle)
                 this.theMap.removeLayer(this.mark)
                 this.theMap.setView([this.x, newy], 13)
                 this.mark = L.marker([this.x, newy]).addTo(this.theMap);
