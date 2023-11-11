@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .tg import tg
 from .validators import returnPosts
 
-async def main(request):
+async def getPostsTG(request):
     try:
         posts = await returnPosts(request)
         if type(posts) == list:
