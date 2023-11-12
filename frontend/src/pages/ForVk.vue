@@ -2,38 +2,103 @@
     <form class="vk-page" @submit.prevent>
         <div class="message" v-show="isUser">
             <div class="input-user">
-                <input-tag class="vk-input-user" v-model="this.userLink" required placeholder="Введите ссылку*"/>
+                <input-tag class="vk-input-user" v-model="this.userLink" required placeholder="Введите идентификатор пользователя*"/>
                 <button class="btn-user" @click="isUser=!isUser">{{ isUser?'Пользователь':'Паблик' }}</button>
                 <input-button class="send-btn"  @click="sendUserLink($event)">Отправить</input-button>
             </div>
-            <res-div class="results">Здесь будут данные о пользователе</res-div>
+            <div v-if="this.resUser !== '' ">
+                <res-div class="results">
+                    <div>
+                        ID: {{ this.resUser.id }}<br>
+                        First Name: {{ this.resUser.first_name }}<br>
+                        Last Name: {{ this.resUser.last_name }}<br>
+                        Folowers: <br>
+                        <div v-for="usr in this.resUser.folowers" :key="usr.id">
+                            {{ usr.first_name }} {{ usr.last_name }}<br>
+                        </div>
+                    </div>
+                </res-div>
+            </div>
+            <div v-else>
+                <res-div class="results">
+                    Данных нет
+                </res-div>
+            </div>
         </div>
         <div class="message" v-show="!isUser">
             <div class="input-public">
                 <button class="btn-publ" @click="isUser=!isUser">{{ isUser?'Пользователь':'Паблик' }}</button>
-                <input-tag class="vk-input-publ" v-model="this.publicLink" required placeholder="Введите ссылку*"/>
+                <input-tag class="vk-input-publ" v-model="this.publicLink" required placeholder="Введите идентификатор паблика*"/>
                 <input-button class="send-btn" @click="sendPublicLink">Отправить</input-button>
             </div>
-            <res-div class="results">Здесь будут данные о паблике</res-div>
+            <div v-if="this.resPublic !== '' ">
+                <res-div class="results">
+                    ID: {{ this.resPublic.id }}<br>
+                    Name: {{ this.resPublic.name }}<br>
+                    Closed: {{ Boolean(this.resPublic.is_closed) }}
+                </res-div>
+            </div>
+            <div v-else>
+                <res-div class="results">
+                    Данных нет
+                </res-div>
+            </div>
         </div>
     </form>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
             userLink: '',
             publicLink: '',
-            isUser: true
+            isUser: true, 
+            resUser: "",
+            resPublic: ""
         }
     },
     methods: {
         sendPublicLink(event) {
-            
+            axios.post('http://localhost:8000/task2/group/',
+                {
+                    'name':this.publicLink
+                }
+            ).then(response => {
+                var data = response.data
+                this.resPublic = {
+                    id: data.id,
+                    name: data.name,
+                    is_closed: data.is_closed
+                }
+                console.log(data)
+            }
+            ).catch(err => {
+                console.log(err)
+                this.resPublic = ""
+            }
+            )
         },
         sendUserLink(event) {
-            
+            axios.post('http://localhost:8000/task2/user/',
+                {
+                    'name':this.userLink
+                }
+            ).then(response => {
+                var data = response.data
+                this.resUser = {
+                    id: data.user_info.id,
+                    first_name: data.user_info.first_name,
+                    last_name: data.user_info.last_name,
+                    folowers: data.followers
+                }
+                console.log(data)
+            }
+            ).catch(err => {
+                console.log(err)
+                this.resUser = ""
+            })
         }
     }
 }
@@ -50,6 +115,9 @@ export default {
     width: 95%;
     margin-top: 2%;
     height: 400px;
+}
+.results div{
+    font-family: 'Inter';
 }
 .btn-user {
     font-family: 'Inter';
