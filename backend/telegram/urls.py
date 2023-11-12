@@ -3,5 +3,4 @@ from .views import getPostsTG, getOrSendCode
 
 urlpatterns = [
     path('', getPostsTG), 
-    path('code/', getOrSendCode)
 ]

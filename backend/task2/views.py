@@ -3,9 +3,12 @@ from django.http import JsonResponse
 import vk_api
 import json
 import requests
+from backend import tokens
 
-access_token = 'vk1.a.9cJgAwKJrhyQ1cnWdQj6Gs5Cs1zd4kbbP6EmfxlODLzUxNhcEIyM20dbojmip9uE-7E4xcSIdAiAkL-nrI3-azO0eL28Rcd7X203xktTvYnRKlCGk6bGLgP6At1JjBFvI5gFnrskaYC6WAaCIeYfji0Ay2xYHutj5rkVM2djkG6UikVj6e6Wu_XPEIavOynoKpcoamq-NQloF6ArZSgqEQ'
-phone = '79097000636'
+
+access_token = tokens.vk_access_token
+phone = tokens.vk_phone
+
 def user(request):
     vk_session = vk_api.VkApi(login=phone, token=access_token)
     vk = vk_session.get_api()

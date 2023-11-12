@@ -6,9 +6,10 @@ from .validators import returnPosts
 from django.contrib.auth.models import AnonymousUser
 from .models import PhoneNumber
 from asgiref.sync import sync_to_async
+from backend import tokens
 
-api_id = "22998293"
-api_hash = "bce9f7a7a22733fd12ebef3840b60e48"
+api_id = tokens.tg_api_id 
+api_hash = tokens.tg_api_hash
 
 async def getPostsTG(request):
     try:
@@ -19,10 +20,13 @@ async def getPostsTG(request):
             return JsonResponse(posts)
         else:
             print(posts)
-            return JsonResponse({"err": "unknown error"})
+            JsonResponse({"err": "unknown error"})
     except Exception as e:
         print(e)
         return JsonResponse({"err": "unknown error"})
+
+
+
 
 async def getOrSendCode(request):
     if request.method == 'GET':

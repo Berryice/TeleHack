@@ -3,13 +3,14 @@ from telethon import TelegramClient
 from telethon.errors import SessionPasswordNeededError
 
 
+
 async def tg(gname, search, username, api_id, api_hash):
     print(type(search))
     client = TelegramClient('anon', api_id=api_id, api_hash=api_hash)
     posts = []
     await client.start()
     try:
-        if search and username:
+        if username:
             async for message in client.iter_messages(gname, search=search, from_user=username):
                 if message.text:
                     posts.append(message.text)

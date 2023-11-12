@@ -1,5 +1,6 @@
 from dadata import Dadata
-token = "f7a1591f5e7299109ce8792e99a970066de53bbe"
+from backend import tokens
+token = tokens.dadata_token
 
 def getData(request):
     dadata = Dadata(token)
