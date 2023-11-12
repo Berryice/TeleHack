@@ -13,7 +13,7 @@ export default {
 <style>
 .slider {
     position: absolute;
-    left: 120%;
+    left: 100%;
     top: 2000%;
     width: 50%;
     opacity: 0.7;

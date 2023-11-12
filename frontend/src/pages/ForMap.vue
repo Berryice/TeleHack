@@ -31,10 +31,8 @@
                         </div>
                     </div>
                 </div>
-                <div v-else>
-                    <div>
-                        <p class="address-entity__empty">Данных нет</p>
-                    </div>
+                <div class="address-entity__empty" v-else>
+                    Данных нет
                 </div>
             </res-div>
         </div>
@@ -102,7 +100,7 @@ export default {
     height: 22px;
     z-index: 9999;
     position: absolute;
-    left: 180%;
+    left: 160%;
     top: 2000%;
     color: #0d6efd;
     border: 3px solid #0d6efd;
@@ -123,8 +121,7 @@ export default {
 }
 .address-entity__empty {
     font-family: "Inter";
-    margin-left: 35%;
-    margin-top: 20%;
+    text-align: center;
     font-size: large;
 }
 </style>
