@@ -1,6 +1,5 @@
 <template>
     <input 
-        required
         :value="modelValue" 
         @input="updateInput" 
         class="input"

@@ -18,13 +18,15 @@ library.add(faVk)
 library.add(faMapLocationDot)
 
 
-const app = createApp(App)
+const app = createApp(App, )
 
 components.forEach(component => {
     app.component(component.name, component)
 })
 app.component('font-awesome-icon', FontAwesomeIcon)
-
+app.config.errorHandler = (err, instance, info) => {
+    console.error(err)
+  }
 app
     .use(router)
     .mount('#app')

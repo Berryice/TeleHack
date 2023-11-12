@@ -1,14 +1,14 @@
 <template>
   <div class="main">
-    <for-mail/>
+    <for-map/>
   </div>
 </template>
 
 <script>
-import ForMail from '@/pages/ForMail';
+import ForMap from '@/pages/ForMap';
 export default {
   components: {
-    ForMail
+    ForMap
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent>
-        <div class="mail-form">
+        <div class="map-form">
             <map-component 
                 :x="this.coords.x"
                 :y="this.coords.y"
@@ -20,6 +20,7 @@
                     class="input-tag"
                 />
                 <map-slider @input="newRadius"/>
+                <div class="for-radius">{{ this.radius }}</div>
                 <input-button @click="printResults" class="btn">Отправить</input-button>
             </div>
             <res-div class="results" >
@@ -60,13 +61,9 @@ export default {
     },
     methods: {
         printResults() {
-            console.log(this.coords.y);
-            console.log(this.coords.x);
-            console.log(this.radius);
             axios.get("http://localhost:8000/geo/", { params: { long: this.coords.y, lat: this.coords.x, radius: this.radius } })
                 .then(response => {
                     this.addresses = response.data.adresses
-                    console.log(this.addresses);
                 }
                 )
                 .catch(err => console.log(err))
@@ -74,15 +71,12 @@ export default {
         newRadius(event) {
             this.radius = event.target.valueAsNumber
         },
-        getRadius() {
-            console.log(this.radius);
-        }
     }
 }
 </script>
 
 <style scoped>
-.mail-form {
+.map-form {
     justify-content: space-between;
     margin: 0 1%;
     position: relative;
@@ -102,10 +96,19 @@ export default {
 .btn {
     height: 30px;
 }
-.slider:hover {
-    opacity: 1;
+.for-radius {
+    text-align: center;
+    width: 10%;
+    height: 22px;
+    z-index: 9999;
+    position: absolute;
+    left: 180%;
+    top: 2000%;
+    color: #0d6efd;
+    border: 3px solid #0d6efd;
+    border-radius: 20px;
+    background-color: white;
 }
-
 .results {
     font-size: 14px;
     width: 18%;

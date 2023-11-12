@@ -14,9 +14,12 @@ export default {
 .slider {
     position: absolute;
     left: 120%;
-    top: 600px;
+    top: 2000%;
     width: 50%;
     opacity: 0.7;
     transition: opacity .2s;
+}
+.slider:hover {
+    opacity: 1;
 }
 </style>

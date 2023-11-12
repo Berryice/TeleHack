@@ -61,44 +61,57 @@ export default {
     },
     methods: {
         sendPublicLink(event) {
-            axios.post('http://localhost:8000/task2/group/',
-                {
-                    'name':this.publicLink
+            if(this.publicLink !== ""){
+                axios.post('http://localhost:8000/task2/group/',
+                    {
+                        'name':this.publicLink
+                    }
+                ).then(response => {
+                    var data = response.data
+                    if(data.id){
+                        this.resPublic = {
+                            id: data.id,
+                            name: data.name,
+                            is_closed: data.is_closed
+                        }
+                    } else {
+                        this.resPublic = ""
+                    }
+                    this.publicLink = ""
                 }
-            ).then(response => {
-                var data = response.data
-                this.resPublic = {
-                    id: data.id,
-                    name: data.name,
-                    is_closed: data.is_closed
-                }
-                console.log(data)
+                ).catch(err => {
+                    console.log(err)
+                    this.resPublic = ""
+                    this.publicLink = ""
+                })
             }
-            ).catch(err => {
-                console.log(err)
-                this.resPublic = ""
-            }
-            )
         },
         sendUserLink(event) {
-            axios.post('http://localhost:8000/task2/user/',
-                {
-                    'name':this.userLink
+            if(this.userLink !== ""){
+                axios.post('http://localhost:8000/task2/user/',
+                    {
+                        'name':this.userLink
+                    }
+                ).then(response => {
+                    var data = response.data
+                    if (data.user_info){
+                        this.resUser = {
+                            id: data.user_info.id,
+                            first_name: data.user_info.first_name,
+                            last_name: data.user_info.last_name,
+                            folowers: data.followers
+                        }
+                    } else {
+                        this.resUser = ""
+                    }
+                    this.userLink = ""
                 }
-            ).then(response => {
-                var data = response.data
-                this.resUser = {
-                    id: data.user_info.id,
-                    first_name: data.user_info.first_name,
-                    last_name: data.user_info.last_name,
-                    folowers: data.followers
-                }
-                console.log(data)
+                ).catch(err => {
+                    console.log(err)
+                    this.resUser = ""
+                    this.userLink = ""
+                })
             }
-            ).catch(err => {
-                console.log(err)
-                this.resUser = ""
-            })
         }
     }
 }
@@ -118,6 +131,9 @@ export default {
 }
 .results div{
     font-family: 'Inter';
+}
+.results div div{
+    margin-left: 30px;
 }
 .btn-user {
     font-family: 'Inter';
